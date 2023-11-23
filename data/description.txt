@@ -1,0 +1,34 @@
+id: index
+State: State, DC, or Puerto Rico
+County: County or county equivalent
+TotalPop: Total population
+Men: Number of men
+Women: Number of women
+Hispanic: % of population that is Hispanic/Latino
+White: % of population that is white
+Black: % of population that is black
+Native: % of population that is Native American or Native Alaskan
+Asian: % of population that is Asian
+Pacific: % of population that is Native Hawaiian or Pacific Islander
+Citizen: Number of citizens
+Income: Median household income ($) (target)
+Poverty: % under poverty level
+ChildPoverty: % of children under poverty level
+Professional: % employed in management, business, science, and arts
+Service: % employed in service jobs
+Office: % employed in sales and office jobs
+Construction: % employed in natural resources, construction, and maintenance
+Production: % employed in production, transportation, and material movement
+Drive: % commuting alone in a car, van, or truck
+Carpool: % carpooling in a car, van, or truck
+Transit: % commuting on public transportation
+Walk: % walking to work
+OtherTransp: % commuting via other means
+WorkAtHome: % working at home
+MeanCommute: Mean commute time (minutes)
+Employed: Number of employed (16+)
+PrivateWork: % employed in private industry
+PublicWork: % employed in public jobs
+SelfEmployed: % self-employed
+FamilyWork: % in unpaid family work
+Unemployment: Unemployment rate (%)
