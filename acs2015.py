@@ -1,13 +1,13 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import mean_squared_error
 from preprocess import fill_nan, filter_by_f_regress, train
 
 # 读取CSV文件
 
-data = pd.read_csv('data/train.csv')
+data = pd.read_csv('data/acs2015_census_tract_data.csv')
 
 new_df = pd.DataFrame()
 new_df['data'] = data['State'] + '-' + data['County']
@@ -15,10 +15,12 @@ new_df['data'] = data['State'] + '-' + data['County']
 # 查看缺失值
 nan_counts = data.isnull().sum()
 print(nan_counts)
+
 nan_rows = data[data.isnull().any(axis=1)]
 
 # 将包含 NaN 值的行保存到 CSV 文件
-nan_rows.to_csv('nan_rows_train.csv', index=False)
+nan_rows.to_csv('nan_rows_acs2015.csv', index=False)
+exit()
 
 # 拼接State和County列
 
@@ -33,8 +35,6 @@ print("初始特征维度为：", feature.shape)
 # feature = filter_by_f_regress(feature, labels)
 # print("f_regress后维度为：", feature.shape)
 
-scaler = StandardScaler()
-feature = scaler.fit_transform(feature)
 
 # 对State-County列进行one-hot编码
 one_hot = 0
@@ -65,4 +65,3 @@ train_rmse = np.sqrt(mean_squared_error(y_train, train_predictions))
 test_rmse = np.sqrt(mean_squared_error(y_test, test_predictions))
 
 print(train_rmse, test_rmse)
-nyc_census_tracts_data_list = ["CensusTract", "County", "Borough", "TotalPop","Hispanic", "White", "Black", "Native", "Asian", "Income", "IncomePerCap", "Poverty", "Employed", "Unemployment"]
