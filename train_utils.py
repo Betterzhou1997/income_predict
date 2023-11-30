@@ -53,7 +53,7 @@ def get_result(x_train, y_train, x_test, y_test):
     train_rmse = np.sqrt(mean_squared_error(y_train, train_predictions))
     test_rmse = np.sqrt(mean_squared_error(y_test, test_predictions))
 
-    print('train_rmse: {:.1f}, test_rmse: {:.1f}'.format(train_rmse, test_rmse))
+
     return train_rmse, test_rmse
 
 
