@@ -32,3 +32,39 @@ PublicWork: % employed in public jobs
 SelfEmployed: % self-employed
 FamilyWork: % in unpaid family work
 Unemployment: Unemployment rate (%)
+
+
+id: 索引
+State: 州、特区或波多黎各
+County: 县或县等价物
+TotalPop: 总人口
+Men: 男性人数
+Women: 女性人数
+Hispanic: 拉丁裔/西班牙裔人口所占比例
+White: 白人人口所占比例
+Black: 非裔人口所占比例
+Native: 美洲原住民或阿拉斯加原住民人口所占比例
+Asian: 亚洲人口所占比例
+Pacific: 夏威夷原住民或太平洋岛民人口所占比例
+Citizen: 公民人数
+Income: 家庭收入中位数（美元）（目标变量）
+Poverty: 贫困线以下人口所占比例
+ChildPoverty: 18岁以下儿童贫困率
+Professional: 从事管理、商业、科学和艺术职业的人口所占比例
+Service: 从事服务业工作的人口所占比例
+Office: 从事销售和办公室工作的人口所占比例
+Construction: 从事自然资源、建筑和维护工作的人口所占比例
+Production: 从事生产、运输和物料搬运工作的人口所占比例
+Drive: 单独驾车上下班的人口所占比例
+Carpool: 拼车上下班的人口所占比例
+Transit: 乘坐公共交通工具上下班的人口所占比例
+Walk: 步行上班的人口所占比例
+OtherTransp: 使用其他方式上下班的人口所占比例
+WorkAtHome: 在家工作的人口所占比例
+MeanCommute: 平均通勤时间（分钟）
+Employed: 就业人数（16岁以上）
+PrivateWork: 在私营行业就业的人口所占比例
+PublicWork: 在公共部门就业的人口所占比例
+SelfEmployed: 自雇人口所占比例
+FamilyWork: 无偿家庭工作的人口所占比例
+Unemployment: 失业率（%）

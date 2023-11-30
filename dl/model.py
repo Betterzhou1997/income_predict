@@ -48,7 +48,6 @@ class MyModel(nn.Module):
                                 nn.Linear(32, 1)
                                 )
 
-
     def forward(self, x):
         x = x.unsqueeze(1)
         # 增加通道数
@@ -62,14 +61,58 @@ class MyModel(nn.Module):
         return x
 
 
-# 创建模型实例
-model = MyModel()
-# 定义RMSE损失函数和Adam优化器
-criterion = nn.MSELoss()  # RMSE损失函数即均方根误差的平方
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-if __name__ == '__main__':
+class MyModelOnehot(nn.Module):
 
-    input_data = torch.randn(10, 30)  # 生成一个大小为(10, 30)的随机输入数据
+    def __init__(self):
+        super(MyModelOnehot, self).__init__()
+        self.one_hot = nn.Sequential(
+            nn.Linear(3115 - 30, 1024),
+            nn.Linear(1024, 512),
+            nn.Linear(512, 64),
+
+        )
+        self.conv1 = nn.Sequential(
+            nn.Conv1d(in_channels=1, out_channels=16, kernel_size=3),
+            nn.BatchNorm1d(16),
+            nn.Conv1d(in_channels=16, out_channels=64, kernel_size=3),
+        )
+        self.res1 = Residual(in_channels=64, out_channels=64, use_1x1conv=True)
+        self.res2 = Residual(in_channels=64, out_channels=64, use_1x1conv=True)
+
+        self.fc = nn.Sequential(nn.Linear(64 * 26, 128),
+                                nn.LeakyReLU(),
+                                nn.Dropout(0.5),
+                                nn.Linear(128, 32),
+                                nn.LeakyReLU(),
+                                nn.Dropout(0.5),
+                                nn.Linear(32, 1)
+                                )
+
+    def forward(self, x):
+        x1 = x[:, 30]
+        x2 = x[:, 30:]
+        print(x1.shape)
+        print(x2.shape)
+        x1 = x1.unsqueeze(1)
+        # 增加通道数
+        x1 = self.conv1(x1)
+        x1 = F.leaky_relu(x1)
+        # 残差块
+        x1 = self.res1(x1)
+        x1 = self.res2(x1)
+        x1 = x1.view(x1.size(0), -1)  # 展开为一维向量
+        x1 = self.fc(x1)
+        return x1
+
+
+if __name__ == '__main__':
+    # 创建模型实例
+    model = MyModelOnehot()
+    # 定义RMSE损失函数和Adam优化器
+    criterion = nn.MSELoss()  # RMSE损失函数即均方根误差的平方
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+    input_data = torch.randn(10, 3115)  # 生成一个大小为(10, 30)的随机输入数据
     target = torch.randn(10, 1)  # 生成一个大小为(10, 1)的随机目标值
     for epoch in range(20):
         optimizer.zero_grad()

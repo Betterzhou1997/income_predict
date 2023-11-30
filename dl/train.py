@@ -6,21 +6,25 @@ from torch import nn, optim
 from torch.utils.data import DataLoader
 
 from dl.load_data import MyDataset
-from dl.model import MyModel
+from dl.model import MyModel, MyModelOnehot
 
 if __name__ == '__main__':
-    model = MyModel()
+    one_hot = True
+    if not one_hot:
+        model = MyModel()
+    else:
+        model = MyModelOnehot()
 
     # 定义MSE损失函数和Adam优化器
     criterion = nn.MSELoss()  # MSE损失函数即均方根误差的平方
     optimizer = optim.Adam(model.parameters(), lr=0.01, weight_decay=0.5)
 
     # 创建数据集实例
-    train_dataset = MyDataset('../data/train.csv')
+    train_dataset = MyDataset('../data/train.csv', one_hot=one_hot)
     # 创建数据加载器
     train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
     # 创建数据集实例
-    test_dataset = MyDataset('../data/train.csv', test=True)
+    test_dataset = MyDataset('../data/train.csv', test=True, one_hot=one_hot)
     # 创建数据加载器
     test_loader = DataLoader(test_dataset, batch_size=128, shuffle=False)
 

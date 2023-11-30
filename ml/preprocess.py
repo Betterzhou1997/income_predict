@@ -18,8 +18,8 @@ def data_process_pipeline(path, one_hot=False):
     feature = fill_nan(X)
 
     print("初始特征维度为：", feature.shape)
-    # feature = filter_by_f_regress(feature, y)
-    # print("f_regress后维度为：", feature.shape)
+    feature = filter_by_f_regress(feature, y)
+    print("f_regress后维度为：", feature.shape)
 
     scaler = StandardScaler()
     feature = scaler.fit_transform(feature)
@@ -38,8 +38,8 @@ def one_hot_emb(X, country):
     return feature
 
 
-def filter_by_f_regress(X, y):
-    f_values, p_values = f_regression(X, y)
+def filter_by_f_regress(x, y):
+    f_values, p_values = f_regression(x, y)
     # print(f_values)
     # print(p_values)
 
@@ -48,8 +48,7 @@ def filter_by_f_regress(X, y):
     p_threshold = 0.05
 
     # 选择同时满足条件的特征
-    selected_features = X[:,
-                        (f_values > f_threshold) & (p_values < p_threshold)]
+    selected_features = x[:, (f_values > f_threshold) & (p_values < p_threshold)]
 
     return selected_features
 

@@ -6,8 +6,8 @@ from ml.preprocess import data_process_pipeline
 
 # 创建自定义数据集类
 class MyDataset(Dataset):
-    def __init__(self, path, test=False):
-        columns, data, labels = data_process_pipeline(path='../data/train.csv', one_hot=False)
+    def __init__(self, path, test=False, one_hot=False):
+        columns, data, labels = data_process_pipeline(path='../data/train.csv', one_hot=True)
         x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=123)
         if test:
             self.data = x_test
