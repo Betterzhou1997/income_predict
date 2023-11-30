@@ -6,7 +6,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.svm import SVR
-from load import load_data
+from ml.load_data import load_data
 
 
 # https://www.heywhale.com/mw/dataset/60df1cf73aeb9c0017b925c1/file
@@ -15,7 +15,7 @@ from load import load_data
 def data_process_pipeline(path, one_hot=False):
     columns, X, country, y = load_data(path)
 
-    feature = fill_nan(X.values)
+    feature = fill_nan(X)
 
     print("初始特征维度为：", feature.shape)
     # feature = filter_by_f_regress(feature, y)

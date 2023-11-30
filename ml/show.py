@@ -8,7 +8,7 @@ from preprocess import fill_nan, filter_by_f_regress, train
 matplotlib.use('TkAgg')
 # 读取CSV文件
 
-data = pd.read_csv('data/train.csv')
+data = pd.read_csv('../data/train.csv')
 
 new_df = pd.DataFrame()
 new_df['data'] = data['State'] + '-' + data['County']

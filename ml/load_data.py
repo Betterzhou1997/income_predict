@@ -18,6 +18,7 @@ def load_data(path: str, print_Nan=False):
 
     data.drop(['id', 'State', 'County', 'Income'], axis=1, inplace=True)
     columns = data.columns
+    data = data.values
     return columns, data, country, labels
 
 
